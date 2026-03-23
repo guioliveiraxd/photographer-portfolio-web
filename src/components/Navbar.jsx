@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react';
+import { SafeImage } from './SafeImage';
 
 export default function Navbar({ categories, activeSection }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function Navbar({ categories, activeSection }) {
       <nav className="mx-auto flex w-[min(100%-1.5rem,1160px)] items-center justify-between gap-3 py-3">
         <a href="#home" className="inline-flex items-center gap-3" aria-label="Ir para o inicio">
           <span className="grid h-14 w-14 place-items-center overflow-hidden rounded-full border border-white/20 bg-neutral-900">
-            <img src="/imgs/valdir/hero-05.jpg" alt="Fotógrafo - Valdir Silva." className="h-14 w-14 rounded-full object-cover" />
+            <SafeImage src="/imgs/valdir/hero-05.jpg" alt="Fotógrafo - Valdir Silva." className="h-14 w-14 rounded-full object-cover" loading="eager" />
           </span>
           <span className="font-display text-2xl tracking-wide text-white">Fotógrafo - Valdir Silva.</span>
         </a>
