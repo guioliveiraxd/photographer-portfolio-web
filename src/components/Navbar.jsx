@@ -21,7 +21,7 @@ export default function Navbar({ categories, activeSection }) {
           <span className="grid h-14 w-14 place-items-center overflow-hidden rounded-full border border-white/20 bg-neutral-900">
             <SafeImage src="/imgs/valdir/hero-05.jpg" alt="Fotógrafo - Valdir Silva." className="h-14 w-14 rounded-full object-cover" loading="eager" />
           </span>
-          <span className="hidden font-display text-xl tracking-wide text-white sm:inline lg:text-2xl">Fotógrafo - Valdir Silva.</span>
+          <span className="max-w-[10.5rem] truncate font-display text-base tracking-wide text-white sm:max-w-none sm:text-xl lg:text-2xl">Fotógrafo - Valdir Silva.</span>
         </a>
 
         <button
