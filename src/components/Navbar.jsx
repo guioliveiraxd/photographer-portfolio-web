@@ -17,11 +17,11 @@ export default function Navbar({ categories, activeSection }) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/55 backdrop-blur-md">
       <nav className="mx-auto flex w-[min(100%-1.5rem,1160px)] items-center justify-between gap-3 py-3">
-        <a href="#home" className="inline-flex items-center gap-3" aria-label="Ir para o inicio">
+        <a href="#home" className="inline-flex items-center gap-2 sm:gap-3" aria-label="Ir para o inicio">
           <span className="grid h-14 w-14 place-items-center overflow-hidden rounded-full border border-white/20 bg-neutral-900">
             <SafeImage src="/imgs/valdir/hero-05.jpg" alt="Fotógrafo - Valdir Silva." className="h-14 w-14 rounded-full object-cover" loading="eager" />
           </span>
-          <span className="font-display text-2xl tracking-wide text-white">Fotógrafo - Valdir Silva.</span>
+          <span className="hidden font-display text-xl tracking-wide text-white sm:inline lg:text-2xl">Fotógrafo - Valdir Silva.</span>
         </a>
 
         <button

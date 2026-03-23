@@ -43,7 +43,7 @@ function CategoryCard({ category, onOpenLightbox }) {
             {category.images.length} foto{category.images.length !== 1 ? 's' : ''} neste portfólio
           </p>
 
-          <div className="grid grid-cols-4 gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="mb-4 grid grid-cols-4 gap-2 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
             {category.images.slice(0, 4).map((img, idx) => (
               <img
                 key={idx}
