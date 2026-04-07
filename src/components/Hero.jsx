@@ -15,12 +15,15 @@ export default function Hero({ slides }) {
   useEffect(() => {
     if (safeSlides.length <= 1) return undefined;
 
+    const currentSlide = safeSlides[activeIndex];
+    const slideDelay = currentSlide?.durationMs ?? HERO_DELAY;
+
     const id = window.setTimeout(() => {
       setActiveIndex((current) => (current + 1) % safeSlides.length);
-    }, HERO_DELAY);
+    }, slideDelay);
 
     return () => window.clearTimeout(id);
-  }, [activeIndex, safeSlides.length]);
+  }, [activeIndex, safeSlides]);
 
   if (safeSlides.length === 0) {
     return (
@@ -54,21 +57,43 @@ export default function Hero({ slides }) {
               index === activeIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {/* Camada de preenchimento para telas largas */}
-            <SafeImage
-              src={slide.src}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover scale-110 blur-lg opacity-45"
-              loading="eager"
-            />
-            {/* Imagem principal sem esticar demais */}
-            <SafeImage
-              src={slide.src}
-              alt={slide.alt}
-              className="absolute inset-0 h-full w-full object-contain"
-              loading="eager"
-            />
+            {slide.kind === 'split' ? (
+              <>
+                <div className="absolute inset-0 grid grid-cols-2">
+                  <SafeImage
+                    src={slide.left.src}
+                    alt={slide.left.alt}
+                    className="h-full w-full object-cover"
+                    loading="eager"
+                  />
+                  <SafeImage
+                    src={slide.right.src}
+                    alt={slide.right.alt}
+                    className="h-full w-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+                <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/30" />
+              </>
+            ) : (
+              <>
+                {/* Camada de preenchimento para telas largas */}
+                <SafeImage
+                  src={slide.src}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover scale-110 blur-lg opacity-45"
+                  loading="eager"
+                />
+                {/* Imagem principal sem esticar demais */}
+                <SafeImage
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="absolute inset-0 h-full w-full object-contain"
+                  loading="eager"
+                />
+              </>
+            )}
           </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/55 to-black/35" />

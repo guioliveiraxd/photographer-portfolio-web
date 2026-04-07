@@ -18,16 +18,35 @@
 }
 
 function CategoryCard({ category, onOpenLightbox }) {
+  const isVideoCategory = category.id === 'videos';
+
   return (
     <div className="w-full group" role="group" aria-label={`Categoria: ${category.name}`}>
       <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 transition-all duration-300 hover:border-gold/50 h-full flex flex-col">
         <div className="relative h-56 md:h-72 overflow-hidden">
-          <img
-            src={category.images[0]?.src}
-            alt={category.name}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          {category.images[0]?.mediaType === 'video' ? (
+            <>
+              <video
+                src={category.images[0].src}
+                muted
+                autoPlay
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/55 px-2 py-1 text-xs font-semibold text-white ring-1 ring-white/30">
+                ▶ Vídeo
+              </span>
+            </>
+          ) : (
+            <img
+              src={category.images[0]?.src}
+              alt={category.name}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
           <div className="absolute top-3 right-3 rounded-full bg-gold/90 px-3 py-1 backdrop-blur-sm">
@@ -40,20 +59,39 @@ function CategoryCard({ category, onOpenLightbox }) {
             {category.name}
           </h3>
           <p className="text-sm text-white/70 mb-4 flex-1">
-            {category.images.length} foto{category.images.length !== 1 ? 's' : ''} neste portfólio
+            {category.images.length} {isVideoCategory ? `vídeo${category.images.length !== 1 ? 's' : ''}` : `foto${category.images.length !== 1 ? 's' : ''}`} neste portfólio
           </p>
 
           <div className="mb-4 grid grid-cols-4 gap-2 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
             {category.images.slice(0, 4).map((img, idx) => (
-              <img
-                key={idx}
-                src={img.src}
-                alt={`Preview ${idx + 1}`}
-                loading="lazy"
-                className="w-full h-12 object-cover rounded cursor-pointer hover:scale-110 transition"
-                onClick={() => onOpenLightbox(category.id, img.id)}
-                title="Clique para ver em tela cheia"
-              />
+              img.mediaType === 'video' ? (
+                <div key={idx} className="relative">
+                  <video
+                    src={img.src}
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-12 object-cover rounded cursor-pointer hover:scale-110 transition"
+                    onClick={() => onOpenLightbox(category.id, img.id)}
+                    title="Clique para ver em tela cheia"
+                  />
+                  <span className="pointer-events-none absolute inset-0 grid place-items-center text-white/95 text-xs font-bold">
+                    ▶
+                  </span>
+                </div>
+              ) : (
+                <img
+                  key={idx}
+                  src={img.src}
+                  alt={`Preview ${idx + 1}`}
+                  loading="lazy"
+                  className="w-full h-12 object-cover rounded cursor-pointer hover:scale-110 transition"
+                  onClick={() => onOpenLightbox(category.id, img.id)}
+                  title="Clique para ver em tela cheia"
+                />
+              )
             ))}
           </div>
 

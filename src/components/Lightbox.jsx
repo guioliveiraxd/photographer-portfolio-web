@@ -24,7 +24,7 @@ export default function Lightbox({ isOpen, image, onClose, onNext, onPrev }) {
 
   return (
     <div
-      className="fixed inset-0 z-[80] grid place-items-center bg-black/88 px-4 py-6"
+      className="fixed inset-0 z-[999] grid place-items-center bg-black/95 backdrop-blur-[2px] px-4 py-6"
       role="dialog"
       aria-modal="true"
       aria-label="Visualizacao em tela cheia"
@@ -60,12 +60,26 @@ export default function Lightbox({ isOpen, image, onClose, onNext, onPrev }) {
         →
       </button>
 
-      <SafeImage
-        src={image.src}
-        alt={image.alt}
-        className="max-h-[88vh] w-full max-w-6xl rounded-2xl border border-white/20 object-contain"
+      <div
+        className="w-full max-w-6xl rounded-2xl border border-white/20 bg-black/80 p-2 md:p-3 shadow-[0_0_0_9999px_rgba(0,0,0,0.12)]"
         onClick={(event) => event.stopPropagation()}
-      />
+      >
+        {image.mediaType === 'video' ? (
+          <video
+            src={image.src}
+            controls
+            autoPlay
+            playsInline
+            className="max-h-[86vh] w-full rounded-xl object-contain bg-black"
+          />
+        ) : (
+          <SafeImage
+            src={image.src}
+            alt={image.alt}
+            className="max-h-[86vh] w-full rounded-xl object-contain bg-black"
+          />
+        )}
+      </div>
     </div>
   );
 }
