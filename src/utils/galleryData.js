@@ -4,6 +4,7 @@
 });
 
 const VIDEO_EXTENSIONS = new Set(['mp4', 'webm', 'mov', 'm4v']);
+const EXCLUDED_CATEGORY_KEYS = new Set(['logo', 'nova-pasta', 'branding']);
 
 const CATEGORY_CONFIG = {
   casais: { id: 'casal', name: 'Casal', order: 0 },
@@ -75,6 +76,8 @@ export function getPortfolioData() {
     if (parts.length < 2) return;
 
     const folderName = parts[0];
+    const folderKey = slugify(folderName);
+    if (EXCLUDED_CATEGORY_KEYS.has(folderKey)) return;
     const fileName = parts[parts.length - 1];
     const extension = fileName.split('.').pop()?.toLowerCase() || '';
     const mediaType = VIDEO_EXTENSIONS.has(extension) ? 'video' : 'image';

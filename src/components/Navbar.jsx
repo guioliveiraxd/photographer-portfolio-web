@@ -1,6 +1,6 @@
 ﻿import { useState } from 'react';
 import { SafeImage } from './SafeImage';
-import navbarAvatar from '/imgs/valdir/hero-05.jpg';
+import navbarLogo from '/imgs/branding/logo.jpg';
 
 export default function Navbar({ categories, activeSection }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,8 +19,8 @@ export default function Navbar({ categories, activeSection }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/55 backdrop-blur-md">
       <nav className="mx-auto flex w-[min(100%-1.5rem,1160px)] items-center justify-between gap-3 py-3">
         <a href="#home" className="inline-flex items-center gap-2 sm:gap-3" aria-label="Ir para o inicio">
-          <span className="grid h-14 w-14 place-items-center overflow-hidden rounded-full border border-white/20 bg-neutral-900">
-            <SafeImage src={navbarAvatar} alt="Fotógrafo - Valdir Silva." className="h-14 w-14 rounded-full object-cover" loading="eager" />
+          <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-full border border-white/20 bg-neutral-900/85 p-0.5">
+            <SafeImage src={navbarLogo} alt="Logo - Valdir Silva" className="h-full w-full rounded-full scale-[1.35] object-cover" loading="eager" />
           </span>
           <span className="max-w-[10.5rem] truncate font-display text-base tracking-wide text-white sm:max-w-none sm:text-xl lg:text-2xl">Fotógrafo - Valdir Silva.</span>
         </a>
