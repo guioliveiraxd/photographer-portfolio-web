@@ -2,7 +2,7 @@
 
 Um portfólio web moderno e responsivo para fotógrafo, construído com **React 18**, **Vite** e **Tailwind CSS**. Apresenta galerias categorizadas, lightbox interativo, navegação fluida e integração com WhatsApp para contato direto.
 
-**🔗 [Visite o site ao vivo](https://photographer-portfolio-web.netlify.app)**
+**🔗 [Visite o site ao vivo](https://valdirsilvafotografo.vercel.app/)**
 
 ---
 
